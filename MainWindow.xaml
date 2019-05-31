@@ -10,6 +10,17 @@
         <Button x:Name="RollDice" Content="RollDice" Click="RollDice_Click" />
         <Button x:Name="Ones" Content="Ones" Click="Ones_Click" />
         <Label x:Name="lblOnes" Content=" " />
+        <Label x:Name="lblTwos" Content=" " />
+        <Label x:Name="lblThrees" Content=" " />
+        <Label x:Name="lblFours" Content=" " />
+        <Label x:Name="lblFives" Content=" " />
+        <Label x:Name="lblSoxes" Content=" " />
+        <Label x:Name="lblThreeofaKind" Content=" " />
+        <Label x:Name="lblFourOfaKind" Content=" " />
+        <Label x:Name="lblFullHouse" Content=" " />
+        <Label x:Name="lblSmallStraight" Content=" " />
+        <Label x:Name="lblLargeStraight" Content=" " />
+        <Label x:Name="lblYAHTZE" Content=" "  />
         <Canvas x:Name="canvas"></Canvas>
     </StackPanel>
 </Window>
