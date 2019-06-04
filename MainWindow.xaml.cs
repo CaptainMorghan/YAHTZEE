@@ -26,62 +26,41 @@ namespace Yahtzee
         int Dice3;
         int Dice4;
         int Dice5;
-        //variables for what box you select for scoring
-        //UpperSection
-        int Aces;
-        int Twos;
-        int Threes;
-        int Fours;
-        int Fives;
-        int Sixes;
-        int UpperSection;
-        int UpperSectionSubTotal;
-        int UpperSectionBonus;
-        int UpperSectionTotal;
-        //LowerSection
-        bool TwoOfAKind = false;
         bool ThreeOfAKind = false;
-        
-        int FourOfAKind;
-        int FullHouse;
-        int SmallStraight;
-        int LargeStraight;
-        int Yahtzee;
-        int YahtzeeBonus;
-        int YahtzeeBonus2;
-        int BottomSectionTotal;
-        int GrandTotal;
-        //Variables for the amount of a certin number this willbe needed to calculate score for allupper section points and certin lower section points
-        int NumberOfAces;
-        int NumberOfTwos;
-        int NumberOfThrees;
-        int NumberOfFours;
-        int NumberOfFives;
-        int NumberOfSixes;
-        int Counter = 0;
         bool AcesUsed = false;
-        bool TwoUsed = false;
+        bool TwosUsed = false;
         bool ThreesUsed = false;
         bool FoursUsed = false;
         bool FivesUsed = false;
         bool SixesUsed = false;
-        
+        int Counter;
+        int UpperSectionScore;
+        int LowerSectionScore;
+        int Bonus = 35;
+        int GrandTotal;
+        int AcesPoints;
+        int TwosPoints;
+        int ThreesPoints;
+        int FoursPoints;
+        int FivesPoints;
+        int SixesPoints;
+        int ThreeOfAKindPoints;
+        int FourOfAKindPoints;
+        int FullHousePoints;
+        int SmallStraightPoints;
+        int LargeStarightPoints;
+        int YahtzeePoints;
+
+
 
         Dice dice;
         Dice diceTwo;
         Dice diceThree;
         Dice diceFour;
         Dice diceFive;
-
         int[] DiceArray = new int[5];
-
-       
-
-
-
         Random random = new Random();
 
-        
         public MainWindow()
         {
             InitializeComponent();
@@ -97,18 +76,18 @@ namespace Yahtzee
 
         private void RollDice_Click(object sender, RoutedEventArgs e)
         {
-            lblOnes.Content = 0; //resets the values to 0 everytime the dice gets rolled so when you roll the dice it doesnt add numbers from the previous roll
-            lblTwos.Content = 0;
-            lblThrees.Content = 0;
-            lblFours.Content = 0;
-            lblFives.Content = 0;
-            lblSoxes.Content = 0;
-            lblThreeofaKind.Content = 0;
-            lblFourOfaKind.Content = 0;
-            lblFullHouse.Content = 0;
-            lblSmallStraight.Content = 0;
-            lblLargeStraight.Content = 0;
-            lblYAHTZE.Content = 0;
+            //lblAces.Content = 0; //resets the values to 0 everytime the dice gets rolled so when you roll the dice it doesnt add numbers from the previous roll
+           // lblTwos.Content = 0;
+           // lblThrees.Content = 0;
+            //lblFours.Content = 0;
+          // lblFives.Content = 0;
+           // lblSoxes.Content = 0;
+          //  lblThreeofaKind.Content = 0;
+           // lblFourOfaKind.Content = 0;
+            //lblFullHouse.Content = 0;
+          //  lblSmallStraight.Content = 0;
+            //lblLargeStraight.Content = 0;
+         //   lblYAHTZE.Content = 0;
 
             Dice = random.Next(1, 7);//picks number from 1-6 and sets the die value to it when the value is set the sprite for the dice will update to match the value 
             dice.dieValue = Dice;
@@ -149,7 +128,8 @@ namespace Yahtzee
                 if (DiceArray[i] == 1)
                 {
                     Counter++;
-                    lblOnes.Content = Counter;
+                  //  lblAces.Content = Counter;
+                    AcesPoints = Counter;
                 }
             }
             Counter = 0;
@@ -159,7 +139,8 @@ namespace Yahtzee
                 if (DiceArray[i] == 2)
                 {
                     Counter++;
-                    lblTwos.Content = Counter;
+                  //  lblTwos.Content = Counter;
+                    TwosPoints = Counter;
                 }
             }
             Counter = 0;
@@ -169,7 +150,8 @@ namespace Yahtzee
                 if (DiceArray[i] == 3)
                 {
                     Counter++;
-                    lblThrees.Content = Counter;
+                    //lblThrees.Content = Counter;
+                    ThreesPoints = Counter;
                 }
             }
             Counter = 0;
@@ -179,7 +161,8 @@ namespace Yahtzee
                 if (DiceArray[i] == 4)
                 {
                     Counter++;
-                    lblFours.Content = Counter;
+                 //   lblFours.Content = Counter;
+                    FoursPoints = Counter;
                 }
             }
             Counter = 0;
@@ -189,7 +172,8 @@ namespace Yahtzee
                 if (DiceArray[i] == 5)
                 {
                     Counter++;
-                    lblFives.Content = Counter;
+                 //   lblFives.Content = Counter;
+                    FivesPoints = Counter;
                 }
             }
             Counter = 0;
@@ -199,7 +183,8 @@ namespace Yahtzee
                 if (DiceArray[i] == 6)
                 {
                     Counter++;
-                    lblSoxes.Content = Counter;
+                    //lblSoxes.Content = Counter;
+                    SixesPoints = Counter;
                 }
             }
             //code for Three of a kind
@@ -211,7 +196,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 3)
                 {
-                    lblThreeofaKind.Content = Counter * 1;
+                  //  lblThreeofaKind.Content = Counter * 1;
+                    ThreeOfAKindPoints = Counter * 1;
                     ThreeOfAKind = true;
                     AcesUsed = true;
 
@@ -225,9 +211,10 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 3)
                 {
-                    lblThreeofaKind.Content = Counter * 2;
+                  //  lblThreeofaKind.Content = Counter * 2;
+                    ThreeOfAKindPoints = Counter * 2;
                     ThreeOfAKind = true;
-                    TwoUsed = true;
+                    TwosUsed = true;
                 }
             }
             Counter = 0;
@@ -238,7 +225,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 3)
                 {
-                    lblThreeofaKind.Content = Counter * 3;
+                  //  lblThreeofaKind.Content = Counter * 3;
+                    ThreeOfAKindPoints = Counter * 3;
                     ThreeOfAKind = true;
                     ThreesUsed = true;
                 }
@@ -251,7 +239,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 3)
                 {
-                    lblThreeofaKind.Content = Counter * 4;
+                 //   lblThreeofaKind.Content = Counter * 4;
+                    ThreeOfAKindPoints = Counter * 4;
                     ThreeOfAKind = true;
                     FoursUsed = true;
                 }
@@ -264,7 +253,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 3)
                 {
-                    lblThreeofaKind.Content = Counter * 5;
+                  //  lblThreeofaKind.Content = Counter * 5;
+                    ThreeOfAKindPoints = Counter * 5;
                     ThreeOfAKind = true;
                     FivesUsed = true;
                 }
@@ -277,7 +267,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 3)
                 {
-                    lblThreeofaKind.Content = Counter * 6;
+                 //   lblThreeofaKind.Content = Counter * 6;
+                    ThreeOfAKindPoints = Counter * 6;
                     ThreeOfAKind = true;
                     SixesUsed = true;
                 }
@@ -291,7 +282,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 4)
                 {
-                    lblFourOfaKind.Content = Counter * 1;
+               //     lblFourOfaKind.Content = Counter * 1;
+                    FourOfAKindPoints = Counter * 1;
                 }
             }
             Counter = 0;
@@ -302,7 +294,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 4)
                 {
-                    lblFourOfaKind.Content = Counter * 2;
+             //       lblFourOfaKind.Content = Counter * 2;
+                    FourOfAKindPoints = Counter * 2;
                 }
             }
             Counter = 0;
@@ -313,7 +306,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 4)
                 {
-                    lblFourOfaKind.Content = Counter * 3;
+                   // lblFourOfaKind.Content = Counter * 3;
+                    FourOfAKindPoints = Counter * 3;
                 }
             }
             Counter = 0;
@@ -324,7 +318,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 4)
                 {
-                    lblFourOfaKind.Content = Counter * 4;
+                  //  lblFourOfaKind.Content = Counter * 4;
+                    FourOfAKindPoints = Counter * 4;
                 }
             }
             Counter = 0;
@@ -335,7 +330,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 4)
                 {
-                    lblFourOfaKind.Content = Counter * 5;
+           //         lblFourOfaKind.Content = Counter * 5;
+                    FourOfAKindPoints = Counter * 5;
                 }
             }
             Counter = 0;
@@ -346,7 +342,8 @@ namespace Yahtzee
                     Counter++;
                 if (Counter >= 4)
                 {
-                    lblFourOfaKind.Content = Counter * 6;
+                 //   lblFourOfaKind.Content = Counter * 6;
+                    FourOfAKindPoints = Counter * 6;
                 }
             }
             //Code for Full House
@@ -367,18 +364,20 @@ namespace Yahtzee
                         Counter++;
                     if (Counter == 2)
                     {
-                        lblFullHouse.Content = 25;
+                    //    lblFullHouse.Content = 25;
+                        FullHousePoints = 25;
                     }
                 }
                 Counter = 0;
                 for (int i = 0; i < DiceArray.Length; i++)
                 {
 
-                    if (DiceArray[i] == 2 && TwoUsed == false)
+                    if (DiceArray[i] == 2 && TwosUsed == false)
                         Counter++;
                     if (Counter == 2)
                     {
-                        lblFullHouse.Content = 25;
+                      //  lblFullHouse.Content = 25;
+                        FullHousePoints = 25;
                     }
                 }
                 Counter = 0;
@@ -389,7 +388,8 @@ namespace Yahtzee
                         Counter++;
                     if (Counter == 2)
                     {
-                        lblFullHouse.Content = 25;
+                   //     lblFullHouse.Content = 25;
+                        FullHousePoints = 25;
                     }
                 }
                 Counter = 0;
@@ -400,7 +400,8 @@ namespace Yahtzee
                         Counter++;
                     if (Counter == 2)
                     {
-                        lblFullHouse.Content = 25;
+                     //   lblFullHouse.Content = 25;
+                        FullHousePoints = 25;
                     }
                 }
                 Counter = 0;
@@ -411,7 +412,8 @@ namespace Yahtzee
                         Counter++;
                     if (Counter == 2)
                     {
-                        lblFullHouse.Content = 25;
+                       // lblFullHouse.Content = 25;
+                        FullHousePoints = 25;
                     }
                 }
                 Counter = 0;
@@ -422,129 +424,23 @@ namespace Yahtzee
                         Counter++;
                     if (Counter == 2)
                     {
-                        lblFullHouse.Content = 25;
+                      //  lblFullHouse.Content = 25;
+                        FullHousePoints = 25;
                     }
                 }
-                //small straight code
+                
+                //Yahtzee Code
+                //Due to there being 7776 combinations with the 5 dice only one of which can be a yahtzee it's likally you will never get one in your average game
+                //Despite this I know that the code works as I set all the dice equal to 1 and ran the program and it showed  that it can recognize a yatzee
                 Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (NumberOfAces >= 1 && NumberOfTwos >= 1)
-                    {
-                         if (NumberOfThrees >= 1 && NumberOfFours >= 1)
-                            
-                        {
-                            lblSmallStraight.Content = 30;
-                        }
-                    }
-                  else if (NumberOfTwos >= 1 && NumberOfThrees >= 1)
-                    {
-                        if (NumberOfFours >= 1 && NumberOfFives >= 1)
-                        {
-                            lblSmallStraight.Content = 30;
-                        }
-                    }
-                  else if (NumberOfThrees >= 1 && NumberOfFours >= 1)
-                    {
-                        if (NumberOfFives >= 1 && NumberOfSixes >= 1)
-                        {
-                            lblSmallStraight.Content = 30;
-                        }
-                    }
-                }
-                    //Large straight code
-                    Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (DiceArray[i] == 1)
-                    {
-                        Counter++;
-                        if (Counter == 1)
-                        {
-                            AcesUsed = true;
-                        }
-                    }
-                }
-                Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (DiceArray[i] == 2)
-                    {
-                        Counter++;
-                        if (Counter == 1)
-                        {
-                            TwoUsed = true;
-                        }
-                    }
-                }
-                Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (DiceArray[i] == 3)
-                    {
-                        Counter++;
-                        if (Counter == 1)
-                        {
-                            ThreesUsed = true;
-                        }
-                    }
-                }
-                Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (DiceArray[i] == 4)
-                    {
-                        Counter++;
-                        if (Counter == 1)
-                        {
-                            FoursUsed = true;
-                        }
-                    }
-                }
-                Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (DiceArray[i] == 5)
-                    {
-                        Counter++;
-                        if (Counter == 1)
-                        {
-                            FivesUsed = true;
-                        }
-                    }
-                }
-                Counter = 0;
-                for (int i = 0; i < DiceArray.Length; i++)
-                {
-                    if (DiceArray[i] == 6)
-                    {
-                        Counter++;
-                        if (Counter == 1)
-                        {
-                            SixesUsed = true;
-                        }
-                    }
-                }
-                {
-                        if (AcesUsed == true && TwoUsed == true && ThreesUsed == true && FoursUsed == true && FivesUsed == true)
-                    { 
-                            lblLargeStraight.Content = 40;
-                        }
-                        else if(TwoUsed == true && ThreesUsed == true && FoursUsed == true && FivesUsed == true && SixesUsed == true)
-                    {
-                        lblLargeStraight.Content = 40;
-                    }
-                        
-                    }
-                    //Yahtzee Code
-                    Counter = 0;
                     for (int i = 0; i < DiceArray.Length; i++)
                     {
                         if (DiceArray[i] == 1)
                             Counter++;
                         if (Counter >= 5)
                         {
-                            lblYAHTZE.Content = 50;
+                         //   lblYAHTZE.Content = 50;
+                        YahtzeePoints = 50;
                         }
                     }
                     Counter = 0;
@@ -555,7 +451,8 @@ namespace Yahtzee
                             Counter++;
                         if (Counter >= 5)
                         {
-                            lblYAHTZE.Content = 50;
+                           // lblYAHTZE.Content = 50;
+                        YahtzeePoints = 50;
                         }
                     }
                     Counter = 0;
@@ -566,7 +463,8 @@ namespace Yahtzee
                             Counter++;
                         if (Counter >= 5)
                         {
-                            lblYAHTZE.Content = 50;
+                          //  lblYAHTZE.Content = 50;
+                        YahtzeePoints = 50;
                         }
                     }
                     Counter = 0;
@@ -577,7 +475,8 @@ namespace Yahtzee
                             Counter++;
                         if (Counter >= 5)
                         {
-                            lblYAHTZE.Content = 50;
+                       //     lblYAHTZE.Content = 50;
+                        YahtzeePoints = 50;
                         }
                     }
                     Counter = 0;
@@ -588,7 +487,8 @@ namespace Yahtzee
                             Counter++;
                         if (Counter >= 5)
                         {
-                            lblYAHTZE.Content = 50;
+                   //         lblYAHTZE.Content = 50;
+                        YahtzeePoints = 50;
                         }
                     }
                     Counter = 0;
@@ -599,7 +499,8 @@ namespace Yahtzee
                             Counter++;
                         if (Counter >= 5)
                         {
-                            lblYAHTZE.Content = 50;
+                    //        lblYAHTZE.Content = 50;
+                        YahtzeePoints = 50;
                         }
                     }
                 }
@@ -607,16 +508,141 @@ namespace Yahtzee
 
 
             }
+        //Spent three days trying to get straights to work not understanding why I couldnt get it to work I've discovered because I used the xUsed
+        // int for calculating a full house some of the values were already set which interferes with the straight calculation. By moving them to a seperate button
+        //for testing and setting them to false again has resolved this issue
 
+        private void StraightTest_Click(object sender, RoutedEventArgs e)
+        {
+            //Small Straight Code
+            AcesUsed = false;
+            TwosUsed = false;
+            ThreesUsed = false;
+            FoursUsed = false;
+            FivesUsed = false;
+            SixesUsed = false;
 
+            Counter = 0;
+            for
+                 (int i = 0; i < DiceArray.Length; i++)
+            {
+                if (DiceArray[i] == 1)
+                {
+                    Counter++;
+                    if (Counter == 1 || Counter == 2)
+                    {
+                        AcesUsed = true;
+                    }
+                }
+            }
+            Counter = 0;
+            for
+                 (int i = 0; i < DiceArray.Length; i++)
+            {
+                if (DiceArray[i] == 2)
+                {
+                    Counter++;
+                    if (Counter == 1 || Counter == 2)
+                    {
+                        TwosUsed = true;
+                    }
+                }
+            }
+            Counter = 0;
+            for
+                 (int i = 0; i < DiceArray.Length; i++)
+            {
+                if (DiceArray[i] == 3)
+                {
+                    Counter++;
+                    if (Counter == 1 || Counter == 2)
+                    {
+                        ThreesUsed = true;
+                    }
+                }
+            }
+            Counter = 0;
+            for
+                 (int i = 0; i < DiceArray.Length; i++)
+            {
+                if (DiceArray[i] == 4)
+                {
+                    Counter++;
+                    if (Counter == 1 || Counter == 2)
+                        FoursUsed = true;
+                }
+            }
+            Counter = 0;
+            for
+                 (int i = 0; i < DiceArray.Length; i++)
+            {
+                if (DiceArray[i] == 5)
+                {
+                    Counter++;
+                    if (Counter == 1 || Counter == 2)
+                    {
+                        FivesUsed = true;
+                    }
+                }
+            }
+            Counter = 0;
+            for
+                 (int i = 0; i < DiceArray.Length; i++)
+            {
+                if (DiceArray[i] == 6)
+                {
+                    Counter++;
+                    if (Counter == 1 || Counter == 2)
+                    {
+                        SixesUsed = true;
+                    }
+                }
+            }
+            if (AcesUsed == true && TwosUsed == true && ThreesUsed == true && FoursUsed == true)
+            {
+             //   lblSmallStraight.Content = 30;
+                SmallStraightPoints = 30;
+            }
+            if (TwosUsed == true && ThreesUsed == true && FoursUsed == true && FivesUsed == true)
+            {
+             //   lblSmallStraight.Content = 30;
+                SmallStraightPoints = 30;
+            }
+            if (ThreesUsed == true && FoursUsed == true && FivesUsed == true && SixesUsed == true)
+            {
+          //      lblSmallStraight.Content = 30;
+                SmallStraightPoints = 30;
+            }
+            //Large Straight Code
+            if (AcesUsed == true && TwosUsed == true && ThreesUsed == true && FoursUsed == true && FivesUsed == true)
+            {
+           //     lblLargeStraight.Content = 40;
+                LargeStarightPoints = 40;
+            }
+            if (TwosUsed == true && ThreesUsed == true && FoursUsed == true && FivesUsed == true && SixesUsed == true)
+            {
+            //    lblLargeStraight.Content = 40;
+                SmallStraightPoints = 40;
+            }
+        }
 
+        private void TotalScore_Click(object sender, RoutedEventArgs e)
+        {
+            //Upper section code
+            UpperSectionScore = AcesPoints + TwosPoints + ThreesPoints + FoursPoints + FivesPoints + SixesPoints;
+            if (UpperSectionScore > 63)
+            {
+                Bonus = 35;
+            }
+            else
+            {
+                Bonus = 0;
+            }
+            LowerSectionScore = ThreeOfAKindPoints + FourOfAKindPoints + FullHousePoints + SmallStraightPoints + LargeStarightPoints + YahtzeePoints;
+            GrandTotal = UpperSectionScore + Bonus + LowerSectionScore;
+         //   lblTotalPoints.Content = GrandTotal;
 
-
-
-
-
-
-        
-      }
+        }
+    }
     }
 

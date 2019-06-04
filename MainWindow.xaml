@@ -1,26 +1,12 @@
-﻿<Window x:Class="Yahtzee.MainWindow"
+﻿<Window x:Class="myGrid.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Yahtzee"
+        xmlns:local="clr-namespace:myGrid"
         mc:Ignorable="d"
-        Title="Yahtzee" Height="450" Width="800">
-    <StackPanel>
-        <Button x:Name="RollDice" Content="RollDice" Click="RollDice_Click" />
-        <Button x:Name="Ones" Content="Ones" Click="Ones_Click" />
-        <Label x:Name="lblOnes" Content=" " />
-        <Label x:Name="lblTwos" Content=" " />
-        <Label x:Name="lblThrees" Content=" " />
-        <Label x:Name="lblFours" Content=" " />
-        <Label x:Name="lblFives" Content=" " />
-        <Label x:Name="lblSoxes" Content=" " />
-        <Label x:Name="lblThreeofaKind" Content=" " />
-        <Label x:Name="lblFourOfaKind" Content=" " />
-        <Label x:Name="lblFullHouse" Content=" " />
-        <Label x:Name="lblSmallStraight" Content=" " />
-        <Label x:Name="lblLargeStraight" Content=" " />
-        <Label x:Name="lblYAHTZE" Content=" "  />
-        <Canvas x:Name="canvas"></Canvas>
-    </StackPanel>
+        Title="MainWindow" Height="350" Width="525" MouseUp="canvas_MouseUp">
+    <Canvas x:Name="canvas" >
+
+    </Canvas>
 </Window>
