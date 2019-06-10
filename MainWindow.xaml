@@ -1,12 +1,12 @@
-﻿<Window x:Class="myGrid.MainWindow"
+﻿<Window x:Class="Yahtzee.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:myGrid"
+        xmlns:local="clr-namespace:Yahtzee"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" MouseUp="canvas_MouseUp">
-    <Canvas x:Name="canvas" >
-
+        Title="MainWindow" Height="450" Width="800" MouseUp="Window_MouseUp" WindowState="Maximized">
+    <Canvas x:Name="canvas">
+        
     </Canvas>
 </Window>

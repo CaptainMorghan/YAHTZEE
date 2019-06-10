@@ -13,20 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace myGrid
+namespace Yahtzee
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+
+
+    class Board
     {
-        Canvas canvas = new Canvas();
+
+        Canvas canvas;
         Line[] columnLines;
         Line[] rowLines;
-        public MainWindow()
-        {
-  
 
+        public Board(Canvas canvas)
+        {
+            this.canvas = canvas;
+            String();
+        }
+
+        public void String()
+        {
             createColumns();
             createRows();
             addString("Aces", 0, 0);
@@ -45,8 +50,8 @@ namespace myGrid
             addString("Lg Straight", 0, 325);
             addString("YAHTZEE", 0, 350);
             addString("Chance", 0, 375);
-            addString("Total Lw", 0, 400);
-            addString("Total Up", 0, 425);
+            addString("Total Up", 0, 400);
+            addString("Total Lw", 0, 425);
             addString("Grand Total", 0, 450);
             addStringSmall("Count and add", 150, 0);
             addStringSmall("Only Aces", 150, 10);
@@ -76,11 +81,23 @@ namespace myGrid
             addString("----------->", 150, 400);
             addString("----------->", 150, 425);
             addString("----------->", 150, 450);
+            addString("RollDice", 730, 135);
+            addString("Surprise", 730, 300);
+            addString("NewGame", 730, 200);
+            addString("HighScore", 0, 475);
+
         }
-
-
-
-        private void addString(string s, int x, int y)
+        public void addString(string s, int x, int y)
+        {
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = s;
+            textBlock.Foreground = Brushes.Black;
+            textBlock.FontSize = 14;
+            canvas.Children.Add(textBlock);
+            Canvas.SetTop(textBlock, y);
+            Canvas.SetLeft(textBlock, x);
+        }
+        public void addStringRemove(string s, int x, int y)//any strings used with this method can also be deleated en mass if the new game button is clicked
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Text = s;
@@ -91,7 +108,7 @@ namespace myGrid
             Canvas.SetLeft(textBlock, x);
         }
         //Need a seperate sized font so I'm creating another method
-        private void addStringSmall(string s, int x, int y)
+        public void addStringSmall(string s, int x, int y)
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Text = s;
@@ -104,7 +121,7 @@ namespace myGrid
 
 
         }
-        private void createColumns()
+        public void createColumns()
         {
             columnLines = new Line[4];
             for (int i = 0; i < columnLines.Length; i++)
@@ -120,7 +137,7 @@ namespace myGrid
             }
         }
 
-        private void createRows()
+        public void createRows()
         {
             rowLines = new Line[20];
             for (int i = 0; i < rowLines.Length; i++)
@@ -135,16 +152,53 @@ namespace myGrid
                 canvas.Children.Add(rowLines[i]);
             }
         }
-
-        private void canvas_MouseUp(object sender, MouseButtonEventArgs e)
+        public void Rick_Roll()
         {
-            Point p = Mouse.GetPosition(canvas);
-            if (p.X > 300 && p.X < 450 && p.Y > 0 && p.Y < 25)
-            {
-
-            }
+            Rectangle r = new Rectangle();
+            r.Height = 25;
+            r.Width = 100;
+            r.Stroke = Brushes.Black;
+            canvas.Children.Add(r);
+            Canvas.SetTop(r, 300);
+            Canvas.SetLeft(r, 730);
         }
+        public void Roll_Dice()
+        {
+            Rectangle r = new Rectangle();
+            r.Height = 25;
+            r.Width = 100;
+            
+            r.Stroke = Brushes.Black;
+            canvas.Children.Add(r);
+            Canvas.SetTop(r, 135);
+            Canvas.SetLeft(r, 730);
+        }
+        public void New_Game()
+        {
+            Rectangle r = new Rectangle();
+            r.Height = 25;
+            r.Width = 100;
 
+            r.Stroke = Brushes.Black;
+            canvas.Children.Add(r);
+            Canvas.SetTop(r, 200);
+            Canvas.SetLeft(r, 730);
+        }
+        public void High_Score()
+        {
+            Rectangle r = new Rectangle();
+            r.Height = 25;
+            r.Width = 100;
 
+            r.Stroke = Brushes.Black;
+            canvas.Children.Add(r);
+            Canvas.SetTop(r, 500);
+            Canvas.SetLeft(r, 0);
+        }
+        
+       
     }
-}
+  }
+    
+
+
